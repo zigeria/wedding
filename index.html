@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Свадебное приглашение</title>
+  <meta name="description" content="Минималистичное приглашение на нашу свадьбу: когда, где и как добраться. Без градиентов и лишнего." />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%92%8D%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-car-wrapper">
+        <img class="hero-car" src="images/car_filled.png" alt="" />
+        <img class="hero-sketch" src="images/bride_and_groom_sketch.png" alt="Невеста и жених" />
+        <span class="hero-car-text">Irrari</span>
+      </div>
+      <div class="container hero-inner">
+        <h1>Мы будем рады разделить с вами этот день</h1>
+        <p class="lead">9 декабря 2025 • Санкт‑Петербург</p>
+        <p>
+          <a class="btn btn-primary" href="#rsvp">Подтвердить участие</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="place" class="section">
+      <div class="container card">
+        <h2>Где</h2>
+        <div class="details-grid">
+          <div class="detail">
+            <h3>Торжественная регистрация</h3>
+            <p>
+              <strong>15:40</strong><br/>
+              Дворец Бракосочетания №1<br/>
+              <a target="_blank" rel="noreferrer noopener" href="https://maps.google.com/?q=%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BD%D0%B0%D0%B1.,%2028">Английская наб., 28</a>
+            </p>
+          </div>
+          <div class="detail">
+            <h3>Праздничный ужин</h3>
+            <p>
+              Атриум холл<br/>
+              <a target="_blank" rel="noreferrer noopener" href="https://maps.google.com/?q=%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BD%D0%B0%D0%B1.,%2070">Английская наб., 70</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plan" class="section">
+      <div class="container card">
+        <h2>План дня</h2>
+        <ul class="timeline" aria-label="План дня">
+          <li>
+            <span class="time">15:40</span>
+            <span class="event">Регистрация — Дворец №1</span>
+          </li>
+          <li>
+            <span class="time">16:30</span>
+            <span class="event">Сбор гостей</span>
+          </li>
+          <li>
+            <span class="time">После</span>
+            <span class="event">Переезд и фотографии</span>
+          </li>
+          <li>
+            <span class="time">Вечер</span>
+            <span class="event">Праздничный ужин — Атриум холл</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section">
+      <div class="container card">
+        <h2>RSVP</h2>
+        <form id="rsvp-form" class="form">
+          <div class="form-row">
+            <label>
+              Имя и фамилия
+              <input type="text" name="name" required placeholder="Например: Иван Иванов" />
+            </label>
+            <label>
+              Количество персон
+              <input type="number" name="count" min="1" max="10" required value="1" />
+            </label>
+          </div>
+          <div class="form-row">
+            <button type="button" class="btn btn-primary" data-action="yes">Подтвердить</button>
+            <button type="button" class="btn" data-action="no">Отклонить</button>
+          </div>
+          <p class="muted small">Данные сохранятся только у вас на устройстве (localStorage).</p>
+          <p id="rsvp-message" class="muted" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="counter" class="section">
+      <div class="container card">
+        <h2 class="center">До свадьбы осталось</h2>
+        <div id="countdown" class="timer">
+          <div class="timer-cell"><div class="num" id="cd-days">—</div><div class="label">дней</div></div>
+          <div class="timer-cell"><div class="num" id="cd-hours">—</div><div class="label">часов</div></div>
+          <div class="timer-cell"><div class="num" id="cd-mins">—</div><div class="label">минут</div></div>
+          <div class="timer-cell"><div class="num" id="cd-secs">—</div><div class="label">секунд</div></div>
+        </div>
+        <p class="muted small center">Чтобы запустить таймер, задайте дату в файле <code>script.js</code> (константа <code>WEDDING_DATE</code>).</p>
+      </div>
+    </section>
+
+    <section id="questions" class="section">
+      <div class="container card">
+        <h2>Опрос</h2>
+        <form id="question-form" class="form">
+          <div class="form-row">
+            <label>
+              Имя и фамилия
+              <input type="text" name="q_name" required placeholder="Например: Анна Петрова" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              Пожелания / комментарии (необязательно)
+              <textarea name="q_note" rows="3" placeholder="Сообщение для нас"></textarea>
+            </label>
+          </div>
+          <div class="form-row">
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </div>
+          <p id="q-message" class="muted" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="container card">
+        <h2>Галерея</h2>
+        <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="map" class="section">
+      <div class="container card">
+        <h2>Как добраться</h2>
+        <div class="map-links">
+          <a class="map-link" target="_blank" rel="noreferrer noopener" href="https://yandex.ru/maps/?text=%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BD%D0%B0%D0%B1.,%2028">Яндекс.Карты — Английская наб., 28</a>
+          <a class="map-link" target="_blank" rel="noreferrer noopener" href="https://yandex.ru/maps/?text=%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BD%D0%B0%D0%B1.,%2070">Яндекс.Карты — Английская наб., 70</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>С любовью — до встречи на празднике.</p>
+    </div>
+  </footer>
+
+  <script src="./gallery.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
