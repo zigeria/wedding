@@ -27,35 +27,86 @@
   setInterval(updateTimer,1000);
 
 
-  // Car animation on scroll
-  function setupScrollAnimation(selector) {
-    const el = document.querySelector(selector);
-    if (el) {
-      function updatePosition() {
+  // Smooth Scroll Animation
+  const animatedElements = [
+    document.querySelector('.separator-car'),
+    document.querySelector('.separator-gorilla')
+  ].filter(el => el);
+
+  if (animatedElements.length > 0) {
+    let elementsData = [];
+    let windowHeight = window.innerHeight;
+    let lastWidth = window.innerWidth;
+
+    function cacheDimensions() {
+      // Add a buffer to windowHeight to ensure animation starts before element enters viewport
+      // This prevents "dead zones" on mobile when the address bar retracts (making viewport taller than cached height)
+      windowHeight = window.innerHeight + 200;
+      lastWidth = window.innerWidth;
+      
+      elementsData = animatedElements.map(el => {
+        // Reset transform to get accurate original position
+        el.style.transform = 'none';
         const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementHeight = rect.height;
+        const absoluteTop = rect.top + window.scrollY;
+        return {
+          el: el,
+          absoluteTop: absoluteTop,
+          height: rect.height
+        };
+      });
+      updatePositions();
+    }
+
+    function onResize() {
+      // On mobile, scrolling triggers resize (address bar). 
+      // We don't want to reset transforms or recalculate height then as it causes stutter/jumps.
+      // Only recalculate if width changes (e.g. orientation change).
+      if (window.innerWidth !== lastWidth) {
+        cacheDimensions();
+      }
+    }
+
+    function updatePositions() {
+      const scrollY = window.scrollY;
+      
+      elementsData.forEach(item => {
+        const rectTop = item.absoluteTop - scrollY;
         
-        // Calculate progress: 0 when entering from bottom, 1 when leaving at top
-        const totalDistance = windowHeight + elementHeight;
-        const traveled = windowHeight - rect.top;
+        const totalDistance = windowHeight + item.height;
+        const traveled = windowHeight - rectTop;
         let progress = traveled / totalDistance;
 
-        // Map progress 0..1 to translateX
-        // We want it to move from left (-60vw) to right (60vw)
         const moveRange = 120; 
-        const translateX = (progress * moveRange) - (moveRange / 2);
+        let translateX = (progress * moveRange) - (moveRange / 2);
         
-        el.style.transform = `translateX(${translateX}vw)`;
-      }
-
-      window.addEventListener('scroll', updatePosition);
-      window.addEventListener('resize', updatePosition);
-      // Initial call to set position
-      updatePosition();
+        // Ensure elements off-screen are positioned at their start/end points
+        // instead of resetting to center (which caused the jump)
+        if (progress < 0) translateX = -moveRange / 2;
+        else if (progress > 1) translateX = moveRange / 2;
+        
+        // Use translate3d for GPU acceleration
+        item.el.style.transform = `translate3d(${translateX}vw, 0, 0)`;
+      });
     }
-  }
 
-  setupScrollAnimation('.separator-car');
-  setupScrollAnimation('.separator-gorilla');
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updatePositions();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    
+    // Initialize
+    cacheDimensions();
+    // Re-calculate on load to ensure images are loaded and layout is final
+    window.addEventListener('load', cacheDimensions);
+  }
 })();
