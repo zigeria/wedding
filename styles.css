@@ -1,12 +1,12 @@
 /* Minimal wedding invitation redesign (no gradients) */
 :root {
-  --ink: #231942;
-  --bg: #E8DBC5;
-  --accent: #DA4469;
-  --accent-alt: #0E7C7B;
+  --ink: #4F4148;
+  --bg: #EFEDE1;
+  --accent: #4F4148;
+  --accent-alt: #4F4148;
   --danger: #A72608;
-  --muted: #5f566a;
-  --line: #23194222;
+  --muted: #4F4148;
+  --line: #4F414822;
   --focus: #DA44694C;
   --radius: 10px;
   --ease: cubic-bezier(.25,.46,.25,.99);
@@ -16,10 +16,10 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 1.55;
-  background: var(--bg);
+  background: #fff;
   color: var(--ink);
 }
 body.lock { overflow: hidden; }
@@ -51,76 +51,124 @@ a:hover { color: var(--accent); }
 .hero-car-text { font-size:6.5cqw; font-weight:700; color: var(--ink); letter-spacing:0.1em; text-transform:uppercase; pointer-events:none; text-align:center; position:absolute; bottom:30%; left:55%; transform:translateX(-50%); z-index:2; white-space:nowrap; }
 .hero-inner { position:relative; z-index:2; }
 
-.section { padding:70px 0; }
-.card { padding:4px 0 0; }
-.card h2 { margin:0 0 24px; font-size:34px; letter-spacing:-0.015em; position:relative; }
-.card h2::after { content:""; position:absolute; left:0; bottom:-6px; width:70px; height:3px; background: var(--accent); }
+/* Screen 2: Circles with letters */
+.screen2 { min-height:100vh; display:flex; align-items:center; justify-content:center; background: #fff; padding:60px 0; }
+.circles-wrapper { display:flex; align-items:center; justify-content:center; gap:40px; margin-bottom:60px; }
+.pine-branch { width:clamp(60px, 8vw, 100px); height:auto; opacity:0.7; }
+.pine-left { transform:scaleX(-1); }
+.circles-center { position:relative; width:clamp(200px, 30vw, 320px); height:clamp(200px, 30vw, 320px); }
+.circle { position:absolute; width:clamp(160px, 24vw, 260px); height:clamp(160px, 24vw, 260px); border-radius:50%; border:3px solid var(--ink); background:#fff; display:flex; align-items:center; justify-content:center; }
+.circle-left { top:0; left:0; z-index:2; }
+.circle-right { bottom:0; right:0; z-index:1; }
+.circle-letter { font-size:clamp(60px, 10vw, 120px); font-weight:700; color: var(--ink); font-family: 'Playfair Display', serif; }
+.wedding-date { text-align:center; font-size:clamp(20px, 3vw, 32px); font-weight:600; color: var(--ink); letter-spacing:0.15em; text-transform:uppercase; margin:0; }
 
-.details-grid { display:grid; gap:36px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
-.detail h3 { margin:0 0 10px; font-size:18px; }
-.detail p { margin:0; font-size:14px; color: var(--muted); line-height:1.7; }
-.detail a { border-bottom:1px solid var(--accent-alt); text-decoration:none; }
-.detail a:hover { color: var(--accent); border-color: var(--accent); }
+/* Screen 3: Invitation */
+.screen3 { min-height:100vh; display:flex; align-items:center; background:#fff; padding:80px 0; }
+.invitation-header { text-align:center; margin-bottom:60px; max-width:800px; margin-left:auto; margin-right:auto; }
+.invitation-header p { font-size:clamp(16px, 2.2vw, 22px); line-height:1.6; color: var(--ink); margin:0; }
+.event-info { 
+  display:flex; 
+  flex-wrap:wrap; 
+  justify-content:center; 
+  gap:50px; 
+  margin-bottom:60px; 
+  align-items:stretch; 
+}
+.event-col { 
+  text-align:center; 
+  background:#fff; 
+  border:3px solid #000; 
+  border-radius: 20px; 
+  padding:20px; 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  justify-content:flex-start; 
+  width:clamp(280px, 35%, 360px); 
+  min-height:clamp(280px, 35%, 360px); 
+  box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px #000;
+  position: relative;
+}
+.event-col h3 { font-family: 'Playfair Display', serif; font-size:clamp(24px, 3vw, 36px); margin:0 0 20px; color: var(--ink); font-weight:700; }
+.event-image { width:100%; height:auto; margin:0 auto 20px; display:block; border-radius: 12px; border: 1px solid #ccc; }
+.event-col p { font-size:clamp(14px, 1.8vw, 18px); line-height:1.5; color: var(--ink); margin:0 0 8px; }
+.event-time { font-weight:700; color: var(--ink); margin-top:12px !important; }
 
-.timeline { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
-.timeline li { display:grid; grid-template-columns:100px 1fr; gap:18px; padding:14px 18px; border:1px solid var(--line); border-radius: var(--radius); background:#fff; }
-.timeline .time { font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color: var(--accent-alt); }
-.timeline .event { font-weight:600; }
+.map-scheme { display:inline-flex; flex-direction:column; align-items:center; gap:5px; margin-top:20px; text-decoration:none; color: var(--ink); font-size:14px; font-weight:600; }
+.map-scheme:hover { color: var(--accent); }
+.pin-icon { font-size: 24px; color: var(--ink); }
+.dresscode { text-align:center; max-width:700px; margin:0 auto; padding-top:40px; border-top:1px solid var(--line); }
+.dresscode h3 { font-size:clamp(20px, 2.8vw, 28px); margin:0 0 16px; color: var(--ink); font-weight:700; }
+.dresscode p { font-size:clamp(14px, 1.8vw, 18px); line-height:1.7; color: var(--muted); margin:0; }
 
-/* Gallery */
-.gallery-grid { display:grid; gap:10px; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); }
-.gallery-grid .item { background:#fff; border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; position:relative; }
-.gallery-grid .item img { width:100%; height:160px; object-fit:cover; }
-.gallery-grid .item button { all:unset; cursor:pointer; position:absolute; inset:0; }
+/* Repeat hero (static car with sketch visible) */
+.hero-repeat { background:#fff; }
+.hero-car-static { position:static; left:auto; width:clamp(160px, 30vw, 400px); margin:0 auto 40px; transform:none !important; }
 
-.lightbox { position:fixed; inset:0; background:#000A; display:none; align-items:center; justify-content:center; z-index:1000; padding:30px; }
-.lightbox.open { display:flex; }
-.lightbox figure { margin:0; max-width:min(96vw,1100px); }
-.lightbox img { width:100%; height:auto; display:block; border:6px solid #fff; border-radius: var(--radius); }
-.lightbox .close { position:absolute; top:24px; right:24px; background:#fff; border:none; border-radius: var(--radius); padding:10px 16px; cursor:pointer; font-weight:600; }
-
-/* Forms */
-.form { display:grid; gap:24px; }
-.form-row { display:flex; flex-wrap:wrap; gap:20px; }
-.form-row label { flex:1 1 280px; font-size:14px; font-weight:600; display:grid; gap:8px; }
-.form-row input, .form-row textarea { width:100%; padding:14px 16px; border:1px solid var(--line); border-radius: var(--radius); background:#fff; font:inherit; font-size:15px; transition:border-color .25s var(--ease), box-shadow .25s var(--ease); }
-.form-row input:focus, .form-row textarea:focus { outline:none; border-color: var(--accent); box-shadow:0 0 0 3px var(--focus); }
-.form-row textarea { resize:vertical; min-height:120px; }
-
-.btn { background:#fff; border:1px solid var(--accent-alt); color: var(--accent-alt); padding:14px 30px; border-radius: var(--radius); font-weight:600; font-size:14px; cursor:pointer; transition:background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
-.btn:hover { background: var(--accent-alt); color:#fff; }
-.btn-primary { background: var(--accent); border-color: var(--accent); color:#fff; }
-.btn-primary:hover { background: var(--danger); border-color: var(--danger); }
-
-#rsvp-message, #q-message { margin:6px 0 0; font-size:14px; font-weight:600; color: var(--accent); }
-
-/* Countdown */
-.timer { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
-.timer-cell { min-width:120px; background:#fff; border:1px solid var(--line); padding:22px 20px; border-radius: var(--radius); text-align:center; }
-.timer-cell .num { font-size:40px; font-weight:700; color: var(--accent); line-height:1; }
-.timer-cell .label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; font-weight:600; color: var(--accent-alt); margin-top:6px; }
-
-.map-links { display:flex; gap:12px; flex-wrap:wrap; }
-.map-link { display:inline-block; background:#fff; border:1px solid var(--accent-alt); color: var(--accent-alt); padding:8px 18px; border-radius: var(--radius); font-size:13px; font-weight:600; text-decoration:none; }
-.map-link:hover { background: var(--accent-alt); color:#fff; }
+/* Countdown section */
+.countdown-section { min-height:60vh; display:flex; align-items:center; justify-content:center; background: #fff; padding:80px 0; }
+.countdown-section h2 { font-size:clamp(24px, 4vw, 42px); margin:0 0 50px; color: var(--ink); font-weight:700; }
+.timer { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.timer-cell { min-width:clamp(100px, 18vw, 140px); background:#fff; border:2px solid var(--ink); padding:clamp(18px, 3vw, 28px) clamp(16px, 2.5vw, 24px); border-radius: var(--radius); text-align:center; }
+.timer-cell .num { font-size:clamp(36px, 6vw, 56px); font-weight:700; color: var(--accent); line-height:1; }
+.timer-cell .label { font-size:clamp(11px, 1.5vw, 14px); letter-spacing:.15em; text-transform:uppercase; font-weight:600; color: var(--accent-alt); margin-top:8px; display:block; }
 
 .muted { color: var(--muted); }
 .small { font-size:12px; font-weight:400; }
 
+.form-section { padding:60px 0; text-align:center; background:#fff; }
+.form-section iframe { max-width:100%; display:block; margin:0 auto; }
+
 .site-footer { padding:46px 0 40px; text-align:center; font-size:14px; color: var(--muted); border-top:1px solid var(--line); }
 
-/* Light responsive adjustments */
-@media (max-width: 780px) {
-  .site-nav ul { flex-wrap:wrap; gap:16px; }
-  .timeline li { grid-template-columns:80px 1fr; }
-  .timer-cell { min-width:100px; }
+/* New Top Section Styles */
+.top-section { min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0 40px; background: var(--bg); }
+.top-image { width: 100%; max-width: 760px; margin: 0 auto 0px; display: block; }
+.main-title { font-family: 'Playfair Display', serif; font-size: clamp(60px, 10vw, 80px); color: var(--ink); margin: 0; font-weight: 400; display: flex; justify-content: center; align-items: center; gap: 0.3em; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+  .main-title {
+    flex-direction: column;
+    gap: 0;
+    line-height: 1.1;
+    margin-bottom: 30px;
+  }
+  .main-title .decreaseMargin {
+    margin-top: -0.2em;
+  }
+  .main-title .amp {
+    margin: 10px 0;
+  }
+  .top-image {
+    margin-bottom: 22px;
+  }
 }
-@media (max-width:560px) {
-  .nav-toggle { display:block; }
-  .site-nav { position:absolute; left:0; right:0; top:100%; background:#fff; border-bottom:1px solid var(--line); display:none; }
-  .site-nav.open { display:block; }
-  .site-nav ul { flex-direction:column; padding:12px 20px; }
-  .hero { padding:80px 0 60px; }
-  .timeline li { padding:12px 14px; }
-}
+.title-wrapper { display: flex; flex-direction: column; align-items: center; width: fit-content; margin: 0 auto; }
+.title-lines { width: 100%; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); height: 10px; margin: 10px 0; }
+.date-divider { display: flex; align-items: center; justify-content: center; gap: 15px; font-size: clamp(34px, 5vw, 70px); color: var(--ink); font-weight: 500; width: 100%; }
+.divider-line { font-weight: 300; color: var(--muted); }
+
+/* Greeting Section */
+.greeting-section { padding: 40px 0; text-align: center; }
+.greeting-box { position: relative; padding: 40px; max-width: 600px; margin: 0 auto; }
+.corner { position: absolute; width: 60px; height: 60px; }
+.corner-tl { top: 0; left: 0; transform: rotate(-90deg); }
+.corner-tr { top: 0; right: 0; transform: rotate(0deg); }
+.corner-bl { bottom: 0; left: 0; transform: rotate(-180deg); }
+.corner-br { bottom: 0; right: 0; transform: rotate(90deg); }
+.invitation-header h2 { font-family: serif; font-size: 28px; margin-bottom: 20px; }
+
+/* Separator Car */
+.separator-car { width: 150px; margin: 20px auto 40px; }
+
+/* Dress Code */
+.dresscode-image { width: 150px; margin: 20px auto; display: block; }
+
+/* Couple Section */
+.couple-section { padding: 60px 0; }
+.couple-image { width: 100%; max-width: 300px; margin: 0 auto 20px; }
+.couple-section h2 { font-family: serif; font-size: 36px; margin: 0; }
+
+.serif-font { font-family: serif; }
 
