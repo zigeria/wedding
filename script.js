@@ -109,4 +109,34 @@
     // Re-calculate on load to ensure images are loaded and layout is final
     window.addEventListener('load', cacheDimensions);
   }
+
+  // Google Form Height Adjuster
+  const iframe = document.getElementById('google-form-iframe');
+  if (iframe) {
+    // Define the heights for each stage (Desktop vs Mobile)
+    const formHeightsDesktop = [200, 900, 3700, 900];
+    const formHeightsMobile = [300, 1200, 5000, 1200]; // Increased for mobile text wrapping
+    
+    let currentStage = 0;
+
+    function updateIframeHeight() {
+      const isMobile = window.innerWidth <= 768;
+      const heights = isMobile ? formHeightsMobile : formHeightsDesktop;
+      
+      // Use the height for the current stage, or the last one if we exceeded
+      const index = Math.min(currentStage, heights.length - 1);
+      iframe.style.height = heights[index] + 'px';
+    }
+
+    // Set initial height
+    updateIframeHeight();
+
+    iframe.addEventListener('load', () => {
+      currentStage++;
+      updateIframeHeight();
+    });
+
+    // Update on resize (e.g. orientation change)
+    window.addEventListener('resize', updateIframeHeight);
+  }
 })();

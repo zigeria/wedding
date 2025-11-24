@@ -121,19 +121,25 @@ a:hover { color: var(--accent); }
 .small { font-size:12px; font-weight:400; }
 
 .form-section { padding:60px 0; text-align:center; background:#fff; }
-.form-section iframe { max-width:100%; display:block; margin:0 auto; }
+.form-section iframe { max-width:100%; display:block; margin:0 auto; height: 1600px; }
+
+@media (max-width: 768px) {
+  .form-section iframe {
+    height: 2400px;
+  }
+}
 
 .site-footer { padding:46px 0 40px; text-align:center; font-size:14px; color: var(--muted); border-top:1px solid var(--line); }
 
 /* New Top Section Styles */
 .top-section { min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0 40px; background: var(--bg); }
-.top-image { width: 100%; max-width: 760px; margin: 0 auto -10px; display: block; }
-.main-title { font-family: 'Playfair Display', serif; font-size: clamp(60px, 10vw, 100px); color: var(--ink); margin: 0; font-weight: 400; display: flex; justify-content: center; align-items: center; gap: 0.3em; flex-wrap: wrap; }
+.top-image { width: 100%; max-width: 600px; margin: 0 auto -10px; display: block; }
+.main-title { font-family: 'Playfair Display', serif; font-size: clamp(60px, 10vw, 80px); color: var(--ink); margin: 0; font-weight: 400; display: flex; justify-content: center; align-items: center; gap: 0.3em; flex-wrap: wrap; }
 
 
 .title-wrapper { display: flex; flex-direction: column; align-items: center; width: fit-content; margin: 0 auto; }
 .title-lines { width: 100%; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); height: 10px; margin: 10px 0; }
-.date-divider { display: flex; align-items: center; justify-content: center; gap: 15px; font-size: clamp(34px, 5vw, 70px); color: var(--ink); font-weight: 500; width: 100%; }
+.date-divider { display: flex; align-items: center; justify-content: center; gap: 15px; font-size: clamp(34px, 5vw, 60px); color: var(--ink); font-weight: 500; width: 100%; }
 .divider-line { font-weight: 300; color: var(--muted); }
 
 /* Greeting Screen Wrapper */
@@ -148,13 +154,13 @@ a:hover { color: var(--accent); }
 
 /* Greeting Section */
 .greeting-section { padding: 40px 0; text-align: center; }
-.greeting-box { position: relative; padding: 40px 80px; max-width: 860px; margin: 0 auto; }
+.greeting-box { position: relative; padding: 30px 60px; max-width: 680px; margin: 0 auto; }
 .corner { position: absolute; width: 110px; height: 110px; }
 .corner-tl { top: 0; left: 0; transform: rotate(-90deg); }
 .corner-tr { top: 0; right: 0; transform: rotate(0deg); }
 .corner-bl { bottom: 0; left: 0; transform: rotate(-180deg); }
 .corner-br { bottom: 0; right: 0; transform: rotate(90deg); }
-.invitation-header h2 { font-size: 48px; margin-bottom: 20px; }
+.invitation-header h2 { font-size: 42px; margin-bottom: 20px; }
 
 /* Separator Wrapper to prevent scroll */
 .separator-wrapper {
