@@ -114,8 +114,8 @@
   const iframe = document.getElementById('google-form-iframe');
   if (iframe) {
     // Define the heights for each stage (Desktop vs Mobile)
-    const formHeightsDesktop = [200, 900, 3700, 900];
-    const formHeightsMobile = [300, 1200, 5000, 1200]; // Increased for mobile text wrapping
+    const formHeightsDesktop = [200, 900, 3600, 900, 3600, 900, 3600, 900, 3600, 900];
+    const formHeightsMobile = [300, 1200, 4900, 1200, 4900, 1200, 4900, 1200, 4900, 1200]; // Increased for mobile text wrapping
     
     let currentStage = 0;
 
